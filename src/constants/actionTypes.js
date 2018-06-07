@@ -1,0 +1,33 @@
+export const ASYNC_SUCCESS = 'ASYNC_SUCCESS';
+export const ASYNC_ERROR = 'ASYNC_ERROR';
+export const ASYNC_START = 'ASYNC_START';
+export const ASYNC_END = 'ASYNC_END';
+
+export const IS_AUTH = 'IS AUTH';
+export const LOGIN_SUCCESS = 'LOGIN';
+export const LOGIN_ERROR = 'LOGIN';
+
+export const FETCH_USER = 'FETCH_USER';
+export const FETCH_USER_SUCCESS = 'FETCH_USER';
+export const FETCH_USER_ERROR = 'FETCH_USER';
+
+export const FETCH_CHAT = 'FETCH_CHAT';
+export const FETCH_CHAT_SUCCESS = 'FETCH_CHAT';
+export const FETCH_CHAT_ERROR = 'FETCH_CHAT';
+
+export const FETCH_EMPLOYEE = 'FETCH_EMPLOYEE';
+export const FETCH_EMPLOYEE_SUCCESS = 'FETCH_EMPLOYEE';
+export const FETCH_EMPLOYEE_ERROR = 'FETCH_EMPLOYEE';
+
+export const FETCH_CONSULTANCE = 'FETCH_CONSULTANCE';
+export const FETCH_CONSULTANCE_SUCCESS = 'FETCH_CONSULTANCE';
+export const FETCH_CONSULTANCE_ERROR = 'FETCH_CONSULTANCE';
+
+export const FETCH_MESSAGE = 'FETCH_MESSAGE';
+export const FETCH_MESSAGE_SUCCESS = 'FETCH_MESSAGE';
+export const FETCH_MESSAGE_ERROR = 'FETCH_MESSAGE';
+
+export const UPDATE_FIELD_AUTH = 'UPDATE_FIELD_AUTH';
+
+export const LOGIN = 'LOGIN';
+export const REGISTER = 'REGISTER';
