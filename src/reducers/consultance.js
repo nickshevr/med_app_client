@@ -12,7 +12,7 @@ export default (state = {}, action) => {
         case CREATE_CONSULTANCE_SUCCESS:
         case FETCH_CONSULTANCE_SUCCESS:
             const data = normalizedConsultance(payload);
-            return { data, ...state };
+            return { ...data, ...state };
         default:
             return state;
     }

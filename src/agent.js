@@ -55,8 +55,8 @@ const Employee = {
 const Consultance = {
     getAll: () =>
         requests.get('/consultance'),
-    create: (userId, doctorId, timeStart, timeEnd) =>
-        requests.post('/consultance', {timeStart, ownerId: doctorId, userId, timeEnd}),
+    create: (userId, doctorId, time_start, time_end) =>
+        requests.post('/consultance', {time_start, ownerId: doctorId, userId, time_end}),
     get: (id) =>
         requests.get(`/consultance/${id}`),
     patch: (id, data) =>

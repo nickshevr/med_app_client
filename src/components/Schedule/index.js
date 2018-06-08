@@ -113,18 +113,32 @@ const styles = {
     },
 };
 
-const Schedule = ({events, classes, onSelectSlot, onSelectEvent}) => (
-    <div className={classes.root}>
-        <BigCalendar
-            events={events_default}
-            step={30}
-            onSelectSlot={onSelectSlot}
-            selectable={true}
-            defaultDate={new Date(2015, 3, 1)}
-            onSelectEvent={onSelectEvent}
-            popup={true}
-        />
-    </div>
-);
+class Schedule  extends React.Component {
+    componentDidMount() {
+        this.props.fetchData();
+    }
+
+    render() {
+        const {events, classes, onSelectSlot, onSelectEvent} = this.props;
+
+        return (
+            <div className={classes.root}>
+                <BigCalendar
+                    events={events}
+                    step={30}
+                    onSelectSlot={onSelectSlot}
+                    selectable={true}
+                    onSelectEvent={onSelectEvent}
+                    popup={true}
+                />
+            </div>
+        );
+    }
+
+    defaultProps = {
+        fetchData: () => {
+        }
+    }
+};
 
 export default withStyles(styles)(Schedule);
