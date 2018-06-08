@@ -1,44 +1,28 @@
 import React from 'react';
+import { values } from 'lodash/fp';
 import { push } from 'react-router-redux'
 import { connect } from 'react-redux';
 
 import EmployeeList from '../../components/EmployeeList';
-
-const data = [{
-    id: '1',
-    name: 'John Brown',
-    age: 32,
-    type: 'Pediatr',
-}, {
-    id: '2',
-    name: 'Joe Black',
-    age: 42,
-    type: 'Hirurg',
-}, {
-    id: '3',
-    name: 'Jim Green',
-    age: 32,
-    type: 'Pediatr_3',
-}, {
-    id: '4',
-    name: 'Jim Red',
-    age: 32,
-    type: 'Pediatr_1',
-}];
+import {FETCH_EMPLOYEE} from "../../constants/actionTypes";
+import agent from "../../agent";
 
 const mapDispatchToProps = (dispatch, props) => ({
-    onSelectSlot: (record) => {
-        return {
-            onClick: () => {
-                console.log(record);
-                dispatch(push(`/doctors/${record.id}/schedule`));
-            },       // click row
-        };
-    },
+    onRowClick: record => ({
+        onClick: () => {
+            console.log(record);
+            dispatch(push(`/doctors/${record.id}/schedule`));
+        }
+    }),
+    fetchData: () => {
+        const payload = agent.Employee.getAll();
+
+        dispatch({type: FETCH_EMPLOYEE, payload});
+    }
 });
 
 const mapStateToProps = (state, props) => ({
-    data,
+    data: values(state.employee),
 });
 
 export default connect(

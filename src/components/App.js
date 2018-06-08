@@ -39,6 +39,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    window.agent = agent;
     if (!this.props.isAuth) {
       this.props.onLoad();
     }
@@ -56,7 +57,7 @@ class App extends React.Component {
               <Route path="/register" component={Register} />
               <Route path="/my/schedule" component={MyCalendar} />
               <Route path="/doctors" component={DoctorList} />
-              <Route path="/doctors/:doctorId/schedule" component={DoctorCalendar} />
+              <Route path="/doctors/:doctorid/schedule" component={DoctorCalendar} />
               <Route path="/consultance/:consultanceId" />
             </Switch>
         </div>

@@ -10,7 +10,7 @@ export default (state = {}, action) => {
     switch (action.type) {
         case FETCH_EMPLOYEE_SUCCESS:
             const data = normalizedEmployee(payload);
-            return { data, ...state };
+            return { ...data, ...state };
         default:
             return state;
     }

@@ -4,7 +4,6 @@ export const ASYNC_START = 'ASYNC_START';
 export const ASYNC_END = 'ASYNC_END';
 
 export const IS_AUTH = 'IS AUTH';
-export const LOGIN_SUCCESS = 'LOGIN';
 export const LOGIN_ERROR = 'LOGIN';
 
 export const FETCH_USER = 'FETCH_USER';
@@ -29,5 +28,11 @@ export const FETCH_MESSAGE_ERROR = 'FETCH_MESSAGE';
 
 export const UPDATE_FIELD_AUTH = 'UPDATE_FIELD_AUTH';
 
+export const CREATE_CONSULTANCE = 'CREATE_CONSULTANCE';
+export const CREATE_CONSULTANCE_SUCCESS = 'CREATE_CONSULTANCE_SUCCESS';
+export const CREATE_CONSULTANCE_ERROR = 'CREATE_CONSULTANCE_ERROR';
+
 export const LOGIN = 'LOGIN';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const REGISTER = 'REGISTER';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';

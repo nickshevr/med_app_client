@@ -7,7 +7,6 @@ const API_ROOT = 'http://localhost:3040/api/v1';
 const encode = encodeURIComponent;
 const responseBody = res => res.body;
 
-
 const requests = {
   del: url =>
     superagent
@@ -19,10 +18,10 @@ const requests = {
         .withCredentials()
         .get(`${API_ROOT}${url}`)
         .then(responseBody),
-  put: (url, body) =>
+  patch: (url, body) =>
     superagent
         .withCredentials()
-        .put(`${API_ROOT}${url}`)
+        .patch(`${API_ROOT}${url}`)
         .send(body)
         .then(responseBody),
   post: (url, body) =>
@@ -42,60 +41,58 @@ const Auth = {
     requests.post('/signup', { username, email, password }),
 };
 
-const Tags = {
-  getAll: () => requests.get('/tags')
+const Employee = {
+  getAll: () =>
+      requests.get('/employee'),
+  create: (name, special_type, userId) =>
+      requests.post('/employee', {special_type, userId, name}),
+  get: (id) =>
+      requests.get(`/employee/${id}`),
+  patch: (id, data) =>
+      requests.patch('/employee', data),
 };
 
-const limit = (count, p) => `limit=${count}&offset=${p ? p * count : 0}`;
-const omitSlug = article => Object.assign({}, article, { slug: undefined })
-const Articles = {
-  all: page =>
-    requests.get(`/articles?${limit(10, page)}`),
-  byAuthor: (author, page) =>
-    requests.get(`/articles?author=${encode(author)}&${limit(5, page)}`),
-  byTag: (tag, page) =>
-    requests.get(`/articles?tag=${encode(tag)}&${limit(10, page)}`),
-  del: slug =>
-    requests.del(`/articles/${slug}`),
-  favorite: slug =>
-    requests.post(`/articles/${slug}/favorite`),
-  favoritedBy: (author, page) =>
-    requests.get(`/articles?favorited=${encode(author)}&${limit(5, page)}`),
-  feed: () =>
-    requests.get('/articles/feed?limit=10&offset=0'),
-  get: slug =>
-    requests.get(`/articles/${slug}`),
-  unfavorite: slug =>
-    requests.del(`/articles/${slug}/favorite`),
-  update: article =>
-    requests.put(`/articles/${article.slug}`, { article: omitSlug(article) }),
-  create: article =>
-    requests.post('/articles', { article })
+const Consultance = {
+    getAll: () =>
+        requests.get('/consultance'),
+    create: (userId, doctorId, timeStart, timeEnd) =>
+        requests.post('/consultance', {timeStart, ownerId: doctorId, userId, timeEnd}),
+    get: (id) =>
+        requests.get(`/consultance/${id}`),
+    patch: (id, data) =>
+        requests.patch(`/consultance/${id}`, data),
+    getChat: (id) =>
+        requests.get(`/consultance/${id}/chat`),
+    getResult: (id) =>
+        requests.get(`/consultance/${id}/consultanceResult`),
 };
 
-const Comments = {
-  create: (slug, comment) =>
-    requests.post(`/articles/${slug}/comments`, { comment }),
-  delete: (slug, commentId) =>
-    requests.del(`/articles/${slug}/comments/${commentId}`),
-  forArticle: slug =>
-    requests.get(`/articles/${slug}/comments`)
+const Chat = {
+    getAll: () =>
+        requests.get('/chat'),
+    create: (userId, doctorId, parentId) =>
+        requests.post('/chat', {parentId, ownerId: doctorId, userId}),
+    get: (id) =>
+        requests.get(`/chat/${id}`),
+    patch: (id, data) =>
+        requests.patch(`/chat/${id}`, data),
+    getMessages: (id) =>
+        requests.get(`/chat/${id}/message`),
 };
 
-const Profile = {
-  follow: username =>
-    requests.post(`/profiles/${username}/follow`),
-  get: username =>
-    requests.get(`/profiles/${username}`),
-  unfollow: username =>
-    requests.del(`/profiles/${username}/follow`)
+const Message = {
+    getAll: () =>
+        requests.get('/messages'),
+    create: (chatId, text) =>
+        requests.post('/consultance', {text, parentId: chatId}),
 };
 
-export default {
-  Articles,
-  Auth,
-  Comments,
-  Profile,
-  Tags,
-  setToken: () => {}
+const Re = {
+    Employee,
+    Auth,
+    Consultance,
+    Chat,
+    Message,
 };
+
+export default Re;

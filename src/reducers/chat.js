@@ -10,7 +10,7 @@ export default (state = {}, action) => {
     switch (action.type) {
         case FETCH_CHAT_SUCCESS:
             const data = normalizedChat(payload);
-            return { data, ...state };
+            return { ...data, ...state };
         default:
             return state;
     }

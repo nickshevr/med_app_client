@@ -2,7 +2,7 @@ import React from 'react';
 import { Table, Input, Button, Icon } from 'antd';
 import { map, uniq, flow } from 'lodash/fp';
 
-const getDataFilters = flow(map('type'), uniq, map(elem => ({ text: elem, value: elem })));
+const getDataFilters = flow(map('special_type'), uniq, map(elem => ({ text: elem, value: elem })));
 
 class EmployeeList extends React.Component {
     state = {
@@ -11,6 +11,9 @@ class EmployeeList extends React.Component {
         searchText: '',
         filtered: false,
     };
+    componentDidMount() {
+        this.props.fetchData();
+    }
     onInputChange = (e) => {
         this.setState({ searchText: e.target.value });
     }
@@ -68,15 +71,11 @@ class EmployeeList extends React.Component {
                 }, () => this.searchInput && this.searchInput.focus());
             },
         }, {
-            title: 'Стаж',
-            dataIndex: 'age',
-            key: 'age',
-        }, {
             title: 'Специальность',
-            dataIndex: 'type',
-            key: 'type',
+            dataIndex: 'special_type',
+            key: 'special_type',
             filters: filters,
-            onFilter: (value, record) => record.type === value,
+            onFilter: (value, record) => record.special_type === value,
         }];
 
         return <Table
